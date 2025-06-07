@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<!-- 
+  +-+-+-+-+-+ +-+-+-+-+-+-+-+
+  |A|m|i|r|z|a| |P|r|o|
+  +-+-+-+-+-+ +-+-+-+-+-+-+-+
+  نویسنده: @Mani_coder
+  چنل نویسنده: @Source_donii
+  نسخه: 5.0
+  آخرین بروزرسانی: 1404/04/15
+-->
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff6b81">
+  <title>آمیرزا پرو | راهنمای پیشرفته کلمات</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff6b81;
+      --primary-dark: #ff4757;
+      --primary-light: #ff8a9d;
+      --secondary: #70a1ff;
+      --secondary-dark: #5352ed;
+      --dark: #2f3542;
+      --darker: #1e272e;
+      --light: #f1f2f6;
+      --lighter: #ffffff;
+      --gray: #a4b0be;
+      --success: #7bed9f;
+      --warning: #ffa502;
+      --info: #1e90ff;
+      --glass: rgba(255, 255, 255, 0.2);
+      --glass-border: rgba(255, 255, 255, 0.3);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 15px 50px rgba(0, 0, 0, 0.2);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 36px;
+    }
+
+    /* تم‌های رنگی */
+    .theme-light {
+      --bg: var(--light);
+      --text: var(--darker);
+      --card: var(--lighter);
+      --border: rgba(0, 0, 0, 0.1);
+      --glass: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.8);
+    }
+    
+    .theme-dark {
+      --bg: #1a1a2e;
+      --text: var(--light);
+      --card: #16213e;
+      --border: rgba(255, 255, 255, 0.1);
+      --glass: rgba(30, 30, 60, 0.7);
+      --glass-border: rgba(60, 60, 100, 0.8);
+    }
+    
+    .theme-blue {
+      --bg: #e6f7ff;
+      --text: #003366;
+      --card: #ffffff;
+      --border: rgba(0, 102, 204, 0.1);
+      --glass: rgba(230, 247, 255, 0.7);
+      --glass-border: rgba(200, 230, 255, 0.8);
+    }
+    
+    .theme-pink {
+      --bg: #fff0f6;
+      --text: #660033;
+      --card: #ffffff;
+      --border: rgba(204, 0, 102, 0.1);
+      --glass: rgba(255, 240, 246, 0.7);
+      --glass-border: rgba(255, 220, 236, 0.8);
+    }
+
+    .theme-glass {
+      --bg: rgba(255, 255, 255, 0.1);
+      --text: var(--darker);
+      --card: var(--glass);
+      --border: var(--glass-border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: var(--transition-slow);
+      line-height: 1.6;
+      background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* ساعت آنالوگ */
+    .clock-container {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .clock {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: var(--card);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      border: 3px solid var(--primary);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .clock-face {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      background-color: var(--text);
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      transition: transform 0.5s cubic-bezier(0.4, 2.3, 0.3, 1);
+    }
+
+    .hour-hand {
+      width: 5px;
+      height: 35px;
+      margin-left: -2.5px;
+    }
+
+    .minute-hand {
+      width: 3px;
+      height: 50px;
+      margin-left: -1.5px;
+    }
+
+    .second-hand {
+      width: 2px;
+      height: 55px;
+      margin-left: -1px;
+      background-color: var(--primary);
+      z-index: 10;
+    }
+
+    .center-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 11;
+      box-shadow: 0 0 10px rgba(255, 107, 129, 0.5);
+    }
+
+    .digital-clock {
+      background-color: var(--card);
+      color: var(--text);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    /* کنترل‌های تم */
+    .theme-controls {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      display: flex;
+      gap: 0.8rem;
+      z-index: 1000;
+      background-color: var(--card);
+      padding: 0.8rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    .theme-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .theme-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .theme-btn.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 107, 129, 0.3);
+    }
+
+    /* هدر */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 5rem 0 3rem;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+
+    .logo {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .logo h1 {
+      font-size: 4.5rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 900;
+      letter-spacing: -3px;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      right: 0;
+      width: 50%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 5px;
+      animation: widthPulse 4s ease-in-out infinite alternate;
+    }
+
+    .tagline {
+      color: var(--text);
+      opacity: 0.9;
+      font-size: 1.3rem;
+      max-width: 800px;
+      line-height: 1.8;
+      background-color: var(--card);
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    /* بخش جستجو */
+    .search-container {
+      background: linear-gradient(135deg, rgba(255, 107, 129, 0.8), rgba(112, 161, 255, 0.8));
+      color: white;
+      padding: 3rem;
+      border-radius: var(--radius-xl);
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(0);
+      transition: var(--transition);
+      animation: slideUp 0.8s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+    }
+
+    .search-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      animation: rotate 20s linear infinite;
+    }
+
+    .search-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-box {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .search-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-icon {
+      width: 80px;
+      height: 80px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      animation: pulse 2s infinite;
+    }
+
+    .search-icon i {
+      font-size: 2.5rem;
+      color: var(--primary);
+    }
+
+    .search-header h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .input-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 250px;
+      max-width: 500px;
+      padding: 1.3rem 2rem;
+      border-radius: var(--radius-lg);
+      border: none;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 1.2rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .search-input:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-btn {
+      padding: 1.3rem 3rem;
+      background: white;
+      color: var(--primary);
+      border: none;
+      border-radius: var(--radius-lg);
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .search-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      background-color: var(--light);
+    }
+
+    .search-btn:active {
+      transform: translateY(0);
+    }
+
+    /* پیشنهادات جستجو */
+    .suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: var(--card);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      z-index: 100;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      margin-top: 0.5rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    .suggestion-item {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .suggestion-item:hover {
+      background-color: rgba(255, 107, 129, 0.1);
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    /* لودینگ */
+    .loader {
+      display: none;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .spinner {
+      width: 80px;
+      height: 80px;
+      border: 8px solid rgba(255, 107, 129, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--primary);
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1.5rem;
+    }
+
+    .loader p {
+      font-size: 1.3rem;
+      color: var(--text);
+      opacity: 0.8;
+    }
+
+    /* نتایج */
+    .results-container {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .results-title {
+      font-size: 2.5rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .results-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 3px;
+    }
+
+    .level-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background-color: var(--card);
+      color: var(--text);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .level-info i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    .level-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .action-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+
+    .words-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .word-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: var(--text);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .word-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .word-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .word-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      opacity: 0.1;
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .word-card:hover::after {
+      height: 100%;
+      opacity: 0.15;
+    }
+
+    .word-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .word-card:hover .word-actions {
+      opacity: 1;
+    }
+
+    .word-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .word-btn:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transform: scale(1.1);
+      border-color: transparent;
+    }
+
+    /* کنترل صدا */
+    .volume-control {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--card);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    .speak-btn:hover .volume-control {
+      opacity: 1;
+      bottom: -40px;
+    }
+
+    .volume-slider {
+      width: 80px;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--border);
+      outline: none;
+      border-radius: 2px;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+    }
+
+    /* صفحه‌بندی */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      min-width: 55px;
+      height: 55px;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background-color: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: bold;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .page-btn:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+
+    .page-btn.active {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border-color: transparent;
+    }
+
+    .page-nav {
+      min-width: 150px;
+    }
+
+    /* دستگاه شبیه‌ساز */
+    .amirza-device {
+      background-color: var(--card);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      margin: 5rem auto;
+      box-shadow: var(--shadow-lg);
+      display: none;
+      max-width: 600px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .device-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .device-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .device-close {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .device-close:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    .device-screen {
+      background-color: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2rem;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .device-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+      pointer-events: none;
+    }
+
+    .word-display {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 1rem 0;
+      text-align: center;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .typing-cursor {
+      position: absolute;
+      right: -10px;
+      width: 3px;
+      height: 50px;
+      background-color: var(--primary);
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    .word-progress {
+      color: var(--text);
+      opacity: 0.7;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .device-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .device-btn {
+      padding: 1rem 2rem;
+      background-color: var(--card);
+      color: var(--text);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .device-btn:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: transparent;
+    }
+
+    .device-btn i {
+      font-size: 1.1rem;
+    }
+
+    /* نقشه مراحل */
+    .levels-map {
+      margin: 5rem auto;
+      display: none;
+    }
+
+    .map-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .map-title {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .map-container {
+      background-color: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 1rem;
+    }
+
+    .map-level {
+      width: 70px;
+      height: 70px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .map-level:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .map-level.completed {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .map-level.current {
+      background-color: var(--card);
+      border: 2px solid var(--primary);
+      transform: scale(1.1);
+    }
+
+    /* آمار کاربر */
+    .user-stats {
+      margin: 5rem auto;
+      display: none;
+    }
+
+    .stats-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .stats-title {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .stat-card {
+      background-color: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .stat-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-value {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    /* فوتر */
+    footer {
+      text-align: center;
+      margin-top: 8rem;
+      padding: 4rem 0;
+      color: var(--text);
+      opacity: 0.9;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-description {
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      background-color: var(--card);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      width: 55px;
+      height: 55px;
+      background-color: var(--card);
+      color: var(--text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .social-link:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      color: var(--text);
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 500;
+      background-color: var(--card);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    .footer-nav a:hover {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      background-color: var(--card);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      display: inline-block;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+    }
+
+    /* دکمه نصب PWA */
+    .install-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+      display: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .install-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* انیمیشن‌ها */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes widthPulse {
+      0% { width: 50%; }
+      100% { width: 70%; }
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--primary) }
+    }
+
+    /* واکنش‌گرایی */
+    @media (max-width: 1200px) {
+      .container {
+        padding: 1.5rem;
+      }
+      
+      .clock-container {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      
+      .theme-controls {
+        position: static;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .logo h1 {
+        font-size: 3.5rem;
+      }
+      
+      .search-container {
+        padding: 2.5rem;
+      }
+      
+      .words-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+      
+      .word-card {
+        font-size: 1.3rem;
+        min-height: 160px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo h1 {
+        font-size: 3rem;
+      }
+      
+      .search-container {
+        padding: 2rem;
+      }
+      
+      .search-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .input-group {
+        flex-direction: column;
+      }
+      
+      .search-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .results-title {
+        font-size: 2rem;
+      }
+      
+      .word-card {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+        min-height: 140px;
+      }
+      
+      .page-btn {
+        height: 45px;
+        min-width: 45px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .logo h1 {
+        font-size: 2.5rem;
+      }
+      
+      .search-container {
+        padding: 1.5rem;
+      }
+      
+      .search-icon {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .search-header h2 {
+        font-size: 1.5rem;
+      }
+      
+      .search-input {
+        padding: 1rem 1.5rem;
+      }
+      
+      .words-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+      }
+      
+      .word-card {
+        padding: 1rem;
+        font-size: 1rem;
+        min-height: 120px;
+      }
+      
+      .amirza-device {
+        padding: 2rem;
+      }
+      
+      .word-display {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body class="theme-light">
+  <!-- دکمه نصب PWA -->
+  <div class="install-btn" id="installBtn">
+    <i class="fas fa-download"></i>
+    نصب برنامه
+  </div>
+
+  <div class="container">
+    <!-- ساعت آنالوگ و دیجیتال -->
+    <div class="clock-container">
+      <div class="clock">
+        <div class="clock-face">
+          <div class="hand hour-hand" id="hourHand"></div>
+          <div class="hand minute-hand" id="minuteHand"></div>
+          <div class="hand second-hand" id="secondHand"></div>
+          <div class="center-circle"></div>
+        </div>
+      </div>
+      <div class="digital-clock" id="digitalClock">
+        <i class="far fa-clock"></i>
+        <span id="clockText">00:00:00</span>
+      </div>
+    </div>
+    
+    <!-- کنترل‌های تم -->
+    <div class="theme-controls">
+      <button class="theme-btn active" id="lightMode" title="تم روشن">
+        <i class="fas fa-sun"></i>
+      </button>
+      <button class="theme-btn" id="darkMode" title="تم تاریک">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="theme-btn" id="systemMode" title="حالت خودکار">
+        <i class="fas fa-adjust"></i>
+      </button>
+      <button class="theme-btn" id="blueMode" title="تم آبی">
+        <i class="fas fa-tint"></i>
+      </button>
+      <button class="theme-btn" id="pinkMode" title="تم صورتی">
+        <i class="fas fa-heart"></i>
+      </button>
+      <button class="theme-btn" id="glassMode" title="تم شیشه‌ای">
+        <i class="fas fa-glass-whiskey"></i>
+      </button>
+    </div>
+    
+    <!-- هدر -->
+    <header>
+      <div class="logo">
+        <h1>آمیرزا پرو</h1>
+      </div>
+      <p class="tagline">
+        راهنمای جامع و پیشرفته بازی آمیرزا با قابلیت‌های منحصر به فرد. ساعت زنده، دستگاه شبیه‌ساز، نقشه مراحل و امکانات خاص دیگر!
+      </p>
+    </header>
+    
+    <!-- بخش جستجو -->
+    <div class="search-container">
+      <div class="search-box">
+        <div class="search-header">
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h2>جستجوی مرحله مورد نظر</h2>
+        </div>
+        <div class="input-group">
+          <input 
+            type="number" 
+            id="levelInput" 
+            class="search-input"
+            placeholder="شماره مرحله را وارد کنید..." 
+            min="1"
+            aria-label="شماره مرحله"
+          >
+          <button id="searchBtn" class="search-btn" aria-label="جستجوی مرحله">
+            <i class="fas fa-search"></i>
+            جستجو
+          </button>
+        </div>
+        <div class="suggestions" id="suggestions"></div>
+      </div>
+    </div>
+    
+    <!-- لودینگ -->
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+      <p>در حال بارگذاری نتایج...</p>
+    </div>
+    
+    <!-- نتایج -->
+    <div class="results-container" id="resultsContainer">
+      <div class="results-header">
+        <h3 class="results-title">کلمات مرحله</h3>
+        <div class="level-info">
+          <i class="fas fa-hashtag"></i>
+          <span id="currentLevel">1</span>
+          <div class="level-actions">
+            <button class="action-btn" id="favoriteBtn" title="افزودن به علاقه‌مندی‌ها">
+              <i class="far fa-heart"></i>
+            </button>
+            <button class="action-btn" id="shareBtn" title="اشتراک‌گذاری">
+              <i class="fas fa-share-alt"></i>
+            </button>
+            <button class="action-btn" id="speakBtn" title="پخش صوتی">
+              <i class="fas fa-volume-up"></i>
+              <div class="volume-control">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" min="0" max="1" step="0.1" value="0.8" class="volume-slider" id="volumeSlider">
+                <i class="fas fa-volume-up"></i>
+              </div>
+            </button>
+            <button class="action-btn" id="mapBtn" title="نمایش نقشه مراحل">
+              <i class="fas fa-map"></i>
+            </button>
+            <button class="action-btn" id="statsBtn" title="آمار کاربر">
+              <i class="fas fa-chart-pie"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="words-grid" id="wordsGrid"></div>
+      
+      <div class="pagination" id="pagination"></div>
+    </div>
+    
+    <!-- دستگاه شبیه‌ساز -->
+    <div class="amirza-device" id="amirzaDevice">
+      <div class="device-header">
+        <h3 class="device-title">
+          <i class="fas fa-mobile-alt"></i>
+          دستگاه شبیه‌ساز آمیرزا
+        </h3>
+        <button class="device-close" id="closeDevice">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="device-screen">
+        <div class="word-progress" id="wordProgress">1 از 5</div>
+        <div class="word-display" id="wordDisplay"></div>
+        <div class="typing-cursor"></div>
+      </div>
+      <div class="device-actions">
+        <button class="device-btn" id="prevWordBtn">
+          <i class="fas fa-chevron-right"></i>
+          کلمه قبل
+        </button>
+        <button class="device-btn" id="speakWordBtn">
+          <i class="fas fa-volume-up"></i>
+          تلفظ
+        </button>
+        <button class="device-btn" id="nextWordBtn">
+          <i class="fas fa-chevron-left"></i>
+          کلمه بعد
+        </button>
+        <button class="device-btn" id="autoPlayBtn">
+          <i class="fas fa-play"></i>
+          پخش خودکار
+        </button>
+      </div>
+    </div>
+    
+    <!-- نقشه مراحل -->
+    <div class="levels-map" id="levelsMap">
+      <div class="map-header">
+        <h3 class="map-title">
+          <i class="fas fa-map-marked-alt"></i>
+          نقشه مراحل
+        </h3>
+        <button class="device-btn" id="closeMap">
+          <i class="fas fa-times"></i>
+          بستن
+        </button>
+      </div>
+      <div class="map-container">
+        <div class="map-grid" id="mapGrid"></div>
+      </div>
+    </div>
+    
+    <!-- آمار کاربر -->
+    <div class="user-stats" id="userStats">
+      <div class="stats-header">
+        <h3 class="stats-title">
+          <i class="fas fa-chart-line"></i>
+          آمار و عملکرد شما
+        </h3>
+        <button class="device-btn" id="closeStats">
+          <i class="fas fa-times"></i>
+          بستن
+        </button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-hashtag"></i>
+          </div>
+          <div class="stat-value" id="totalLevels">0</div>
+          <div class="stat-label">مرحله مشاهده شده</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="stat-value" id="totalWords">0</div>
+          <div class="stat-label">کلمه یادگرفته</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="stat-value" id="favoriteCount">0</div>
+          <div class="stat-label">علاقه‌مندی</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-history"></i>
+          </div>
+          <div class="stat-value" id="lastVisit">0</div>
+          <div class="stat-label">روز گذشته</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- فوتر -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">آمیرزا پرو</div>
+        <p class="footer-description">
+          راهنمای جامع و پیشرفته بازی آمیرزا با قابلیت‌های منحصر به فرد. این برنامه به شما کمک می‌کند تا تمام مراحل بازی را با موفقیت پشت سر بگذارید.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="تلگرام"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link" aria-label="توییتر"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="آپارات"><i class="fab fa-youtube"></i></a>
+        </div>
+        <nav class="footer-nav">
+          <a href="#">درباره ما</a>
+          <a href="#">تماس با ما</a>
+          <a href="#">قوانین</a>
+          <a href="#">حریم خصوصی</a>
+          <a href="#">سوالات متداول</a>
+        </nav>
+        <p class="copyright">تمامی حقوق برای آمیرزا پرو محفوظ است © ۱۴۰۴</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // داده‌های بازی
+    let gameData = {};
+    let currentLevel = 1;
+    let currentWords = [];
+    let currentWordIndex = 0;
+    let searchHistory = [];
+    let favoriteLevels = [];
+    let completedLevels = [];
+    let userStats = {
+      totalLevels: 0,
+      totalWords: 0,
+      lastVisit: new Date().toLocaleDateString('fa-IR')
+    };
+    let autoPlayInterval = null;
+    let volume = 0.8;
+    
+    // عناصر DOM
+    const levelInput = document.getElementById('levelInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const loader = document.getElementById('loader');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const wordsGrid = document.getElementById('wordsGrid');
+    const currentLevelDisplay = document.getElementById('currentLevel');
+    const pagination = document.getElementById('pagination');
+    const suggestions = document.getElementById('suggestions');
+    const hourHand = document.getElementById('hourHand');
+    const minuteHand = document.getElementById('minuteHand');
+    const secondHand = document.getElementById('secondHand');
+    const clockText = document.getElementById('clockText');
+    const lightModeBtn = document.getElementById('lightMode');
+    const darkModeBtn = document.getElementById('darkMode');
+    const systemModeBtn = document.getElementById('systemMode');
+    const blueModeBtn = document.getElementById('blueMode');
+    const pinkModeBtn = document.getElementById('pinkMode');
+    const glassModeBtn = document.getElementById('glassMode');
+    const amirzaDevice = document.getElementById('amirzaDevice');
+    const wordDisplay = document.getElementById('wordDisplay');
+    const wordProgress = document.getElementById('wordProgress');
+    const prevWordBtn = document.getElementById('prevWordBtn');
+    const nextWordBtn = document.getElementById('nextWordBtn');
+    const speakWordBtn = document.getElementById('speakWordBtn');
+    const autoPlayBtn = document.getElementById('autoPlayBtn');
+    const closeDeviceBtn = document.getElementById('closeDevice');
+    const favoriteBtn = document.getElementById('favoriteBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const speakBtn = document.getElementById('speakBtn');
+    const mapBtn = document.getElementById('mapBtn');
+    const statsBtn = document.getElementById('statsBtn');
+    const levelsMap = document.getElementById('levelsMap');
+    const mapGrid = document.getElementById('mapGrid');
+    const closeMapBtn = document.getElementById('closeMap');
+    const userStatsSection = document.getElementById('userStats');
+    const closeStatsBtn = document.getElementById('closeStats');
+    const totalLevelsStat = document.getElementById('totalLevels');
+    const totalWordsStat = document.getElementById('totalWords');
+    const favoriteCountStat = document.getElementById('favoriteCount');
+    const lastVisitStat = document.getElementById('lastVisit');
+    const installBtn = document.getElementById('installBtn');
+    const volumeSlider = document.getElementById('volumeSlider');
+    
+    // بارگذاری داده‌ها
+    async function loadGameData() {
+      try {
+        showLoader();
+        const response = await fetch('amirza.json');
+        
+        if (!response.ok) {
+          throw new Error('خطا در بارگذاری داده‌ها');
+        }
+        
+        gameData = await response.json();
+        
+        // بارگذاری داده‌های کاربر از localStorage
+        loadUserData();
+        
+        // نمایش مرحله تصادفی در اولین بارگیری
+        const randomLevel = Math.floor(Math.random() * Object.keys(gameData).length) + 1;
+        levelInput.value = randomLevel;
+        
+        hideLoader();
+        updateStatsDisplay();
+        
+        // تنظیم مقدار اولیه حجم صدا
+        volume = parseFloat(localStorage.getItem('amirzaVolume')) || 0.8;
+        volumeSlider.value = volume;
+      } catch (error) {
+        console.error('Error:', error);
+        hideLoader();
+        showError('خطا در بارگذاری داده‌ها. لطفاً صفحه را رفرش کنید.');
+      }
+    }
+    
+    // بارگذاری داده‌های کاربر
+    function loadUserData() {
+      const savedHistory = localStorage.getItem('amirzaSearchHistory');
+      if (savedHistory) {
+        searchHistory = JSON.parse(savedHistory);
+      }
+      
+      const savedFavorites = localStorage.getItem('amirzaFavorites');
+      if (savedFavorites) {
+        favoriteLevels = JSON.parse(savedFavorites);
+      }
+      
+      const savedCompleted = localStorage.getItem('amirzaCompleted');
+      if (savedCompleted) {
+        completedLevels = JSON.parse(savedCompleted);
+      }
+      
+      const savedStats = localStorage.getItem('amirzaStats');
+      if (savedStats) {
+        userStats = JSON.parse(savedStats);
+      }
+    }
+    
+    // ذخیره داده‌های کاربر
+    function saveUserData() {
+      localStorage.setItem('amirzaSearchHistory', JSON.stringify(searchHistory));
+      localStorage.setItem('amirzaFavorites', JSON.stringify(favoriteLevels));
+      localStorage.setItem('amirzaCompleted', JSON.stringify(completedLevels));
+      localStorage.setItem('amirzaStats', JSON.stringify(userStats));
+      localStorage.setItem('amirzaVolume', volume.toString());
+    }
+    
+    // نمایش لودینگ
+    function showLoader() {
+      loader.style.display = 'block';
+      resultsContainer.style.display = 'none';
+    }
+    
+    // مخفی کردن لودینگ
+    function hideLoader() {
+      loader.style.display = 'none';
+    }
+    
+    // نمایش خطا
+    function showError(message) {
+      wordsGrid.innerHTML = `<div class="error-message">${message}</div>`;
+      resultsContainer.style.display = 'block';
+    }
+    
+    // جستجوی مرحله
+    function searchLevel() {
+      const level = parseInt(levelInput.value);
+      
+      if (!level || isNaN(level)) {
+        showError('لطفاً یک شماره مرحله معتبر وارد کنید');
+        return;
+      }
+      
+      currentLevel = level;
+      showLevelResults(level);
+      
+      // اضافه کردن به تاریخچه
+      if (!searchHistory.includes(level)) {
+        searchHistory.unshift(level);
+        if (searchHistory.length > 10) {
+          searchHistory.pop();
+        }
+      }
+      
+      // اضافه کردن به مراحل تکمیل شده
+      if (!completedLevels.includes(level)) {
+        completedLevels.push(level);
+        userStats.totalLevels = completedLevels.length;
+      }
+      
+      // به‌روزرسانی آمار
+      userStats.totalWords += gameData[level]?.length || 0;
+      userStats.lastVisit = new Date().toLocaleDateString('fa-IR');
+      
+      saveUserData();
+      updateStatsDisplay();
+    }
+    
+    // نمایش نتایج مرحله
+    function showLevelResults(level) {
+      showLoader();
+      
+      setTimeout(() => {
+        currentLevelDisplay.textContent = level;
+        
+        if (gameData[level]) {
+          currentWords = gameData[level];
+          currentWordIndex = 0;
+          renderWords(currentWords);
+          renderPagination();
+          updateDeviceScreen();
+          
+          // بررسی آیا مرحله مورد علاقه است
+          updateFavoriteButton();
+        } else {
+          showError('مرحله‌ای با این شماره یافت نشد');
+        }
+        
+        hideLoader();
+        resultsContainer.style.display = 'block';
+        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+    
+    // رندر کلمات
+    function renderWords(words) {
+      wordsGrid.innerHTML = '';
+      
+      words.forEach((word, index) => {
+        const wordCard = document.createElement('div');
+        wordCard.className = 'word-card';
+        wordCard.innerHTML = `
+          ${word}
+          <div class="word-actions">
+            <button class="word-btn copy-btn" data-word="${word}" title="کپی">
+              <i class="far fa-copy"></i>
+            </button>
+            <button class="word-btn speak-btn" data-word="${word}" title="تلفظ">
+              <i class="fas fa-volume-up"></i>
+            </button>
+          </div>
+        `;
+        wordCard.addEventListener('click', () => {
+          currentWordIndex = index;
+          updateDeviceScreen();
+          amirzaDevice.style.display = 'block';
+          amirzaDevice.scrollIntoView({ behavior: 'smooth' });
+        });
+        wordsGrid.appendChild(wordCard);
+      });
+      
+      // اضافه کردن رویدادهای کلیک برای دکمه‌های کپی و تلفظ
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          copyToClipboard(btn.dataset.word);
+        });
+      });
+      
+      document.querySelectorAll('.speak-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          speakWord(btn.dataset.word);
+        });
+      });
+    }
+    
+    // رندر صفحه‌بندی
+    function renderPagination() {
+      pagination.innerHTML = '';
+      
+      // دکمه قبلی
+      const prevBtn = document.createElement('div');
+      prevBtn.className = 'page-btn page-nav';
+      prevBtn.innerHTML = '<i class="fas fa-chevron-right"></i> مرحله قبل';
+      prevBtn.addEventListener('click', () => {
+        if (currentLevel > 1) {
+          currentLevel--;
+          levelInput.value = currentLevel;
+          searchLevel();
+        }
+      });
+      pagination.appendChild(prevBtn);
+      
+      // دکمه بعدی
+      const nextBtn = document.createElement('div');
+      nextBtn.className = 'page-btn page-nav';
+      nextBtn.innerHTML = 'مرحله بعد <i class="fas fa-chevron-left"></i>';
+      nextBtn.addEventListener('click', () => {
+        currentLevel++;
+        levelInput.value = currentLevel;
+        searchLevel();
+      });
+      pagination.appendChild(nextBtn);
+      
+      // دکمه دستگاه مجازی
+      const deviceBtn = document.createElement('div');
+      deviceBtn.className = 'page-btn page-nav';
+      deviceBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> شبیه‌ساز';
+      deviceBtn.addEventListener('click', () => {
+        amirzaDevice.style.display = 'block';
+        amirzaDevice.scrollIntoView({ behavior: 'smooth' });
+      });
+      pagination.appendChild(deviceBtn);
+      
+      // دکمه نقشه مراحل
+      const mapBtn = document.createElement('div');
+      mapBtn.className = 'page-btn page-nav';
+      mapBtn.innerHTML = '<i class="fas fa-map"></i> نقشه مراحل';
+      mapBtn.addEventListener('click', () => {
+        showLevelsMap();
+      });
+      pagination.appendChild(mapBtn);
+      
+      // دکمه آمار کاربر
+      const statsBtn = document.createElement('div');
+      statsBtn.className = 'page-btn page-nav';
+      statsBtn.innerHTML = '<i class="fas fa-chart-pie"></i> آمار من';
+      statsBtn.addEventListener('click', () => {
+        userStatsSection.style.display = 'block';
+        userStatsSection.scrollIntoView({ behavior: 'smooth' });
+      });
+      pagination.appendChild(statsBtn);
+    }
+    
+    // نمایش نقشه مراحل
+    function showLevelsMap() {
+      levelsMap.style.display = 'block';
+      renderMapGrid();
+      levelsMap.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // رندر نقشه مراحل
+    function renderMapGrid() {
+      mapGrid.innerHTML = '';
+      
+      const totalLevels = Object.keys(gameData).length;
+      const levelsToShow = Math.min(100, totalLevels); // نمایش حداکثر 100 مرحله
+      
+      for (let i = 1; i <= levelsToShow; i++) {
+        const levelBtn = document.createElement('div');
+        levelBtn.className = 'map-level';
+        if (completedLevels.includes(i)) {
+          levelBtn.classList.add('completed');
+        }
+        if (i === currentLevel) {
+          levelBtn.classList.add('current');
+        }
+        levelBtn.textContent = i;
+        levelBtn.addEventListener('click', () => {
+          levelInput.value = i;
+          searchLevel();
+          levelsMap.style.display = 'none';
+        });
+        mapGrid.appendChild(levelBtn);
+      }
+    }
+    
+    // به‌روزرسانی صفحه دستگاه شبیه‌ساز
+    function updateDeviceScreen() {
+      if (currentWords.length > 0) {
+        // افکت تایپ کردن
+        const word = currentWords[currentWordIndex];
+        wordDisplay.innerHTML = '';
+        const cursor = document.querySelector('.typing-cursor');
+        cursor.style.display = 'block';
+        
+        let i = 0;
+        const typingEffect = setInterval(() => {
+          if (i < word.length) {
+            wordDisplay.innerHTML += word.charAt(i);
+            i++;
+          } else {
+            clearInterval(typingEffect);
+            cursor.style.display = 'none';
+          }
+        }, 100);
+        
+        wordProgress.textContent = `${currentWordIndex + 1} از ${currentWords.length}`;
+      } else {
+        wordDisplay.textContent = 'کلمه‌ای برای نمایش وجود ندارد';
+        wordProgress.textContent = '';
+      }
+    }
+    
+    // به‌روزرسانی دکمه علاقه‌مندی
+    function updateFavoriteButton() {
+      if (favoriteLevels.includes(currentLevel)) {
+        favoriteBtn.innerHTML = '<i class="fas fa-heart"></i>';
+        favoriteBtn.style.color = 'var(--primary)';
+      } else {
+        favoriteBtn.innerHTML = '<i class="far fa-heart"></i>';
+        favoriteBtn.style.color = 'var(--text)';
+      }
+    }
+    
+    // به‌روزرسانی آمار
+    function updateStatsDisplay() {
+      totalLevelsStat.textContent = userStats.totalLevels;
+      totalWordsStat.textContent = userStats.totalWords;
+      favoriteCountStat.textContent = favoriteLevels.length;
+      lastVisitStat.textContent = userStats.lastVisit;
+    }
+    
+    // کپی به کلیپ‌بورد
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('کلمه با موفقیت کپی شد');
+      });
+    }
+    
+    // پخش صوتی کلمه (نسخه بهبود یافته)
+    function speakWord(text) {
+      // توقف هر پخش صوتی قبلی
+      window.speechSynthesis?.cancel();
+      
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'fa-IR';
+        utterance.rate = 0.8;
+        utterance.volume = volume;
+        
+        // پیدا کردن صدای فارسی
+        const voices = window.speechSynthesis.getVoices();
+        const persianVoice = voices.find(voice => 
+          voice.lang === 'fa-IR' || voice.lang === 'fa' || voice.name.includes('Persian')
+        );
+        
+        if (persianVoice) {
+          utterance.voice = persianVoice;
+        }
+        
+        utterance.onstart = () => {
+          showToast('در حال پخش تلفظ...');
+        };
+        
+        utterance.onerror = (e) => {
+          console.error('Error in speech synthesis:', e);
+          showToast('خطا در پخش صدا');
+        };
+        
+        window.speechSynthesis.speak(utterance);
+      } else {
+        showToast('مرورگر شما از تبدیل متن به گفتار پشتیبانی نمی‌کند');
+      }
+    }
+    
+    // پخش خودکار تمام کلمات
+    function autoPlayWords() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+        autoPlayBtn.innerHTML = '<i class="fas fa-play"></i> پخش خودکار';
+        return;
+      }
+      
+      autoPlayBtn.innerHTML = '<i class="fas fa-stop"></i> توقف';
+      let index = 0;
+      
+      const playNextWord = () => {
+        if (index < currentWords.length) {
+          currentWordIndex = index;
+          updateDeviceScreen();
+          speakWord(currentWords[index]);
+          index++;
+        } else {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+          autoPlayBtn.innerHTML = '<i class="fas fa-play"></i> پخش خودکار';
+        }
+      };
+      
+      playNextWord();
+      autoPlayInterval = setInterval(playNextWord, 3000);
+    }
+    
+    // نمایش نوتیفیکیشن
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.textContent = message;
+      toast.style.position = 'fixed';
+      toast.style.bottom = '30px';
+      toast.style.left = '50%';
+      toast.style.transform = 'translateX(-50%)';
+      toast.style.backgroundColor = 'var(--primary)';
+      toast.style.color = 'white';
+      toast.style.padding = '12px 24px';
+      toast.style.borderRadius = 'var(--radius-sm)';
+      toast.style.zIndex = '1000';
+      toast.style.boxShadow = 'var(--shadow-lg)';
+      toast.style.animation = 'fadeIn 0.3s ease';
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'fadeIn 0.3s ease reverse';
+        setTimeout(() => {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 2000);
+    }
+    
+    // به‌روزرسانی ساعت
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      
+      // ساعت آنالوگ
+      const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+      const minuteDeg = minutes * 6;
+      const secondDeg = seconds * 6;
+      
+      hourHand.style.transform = `rotate(${hourDeg}deg)`;
+      minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+      secondHand.style.transform = `rotate(${secondDeg}deg)`;
+      
+      // ساعت دیجیتال
+      const timeString = now.toLocaleTimeString('fa-IR');
+      clockText.textContent = timeString;
+    }
+    
+    // تغییر تم
+    function setTheme(theme) {
+      document.body.className = theme;
+      localStorage.setItem('amirzaTheme', theme);
+      
+      // به‌روزرسانی دکمه‌های فعال
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      if (theme === 'theme-light') lightModeBtn.classList.add('active');
+      if (theme === 'theme-dark') darkModeBtn.classList.add('active');
+      if (theme === '') systemModeBtn.classList.add('active');
+      if (theme === 'theme-blue') blueModeBtn.classList.add('active');
+      if (theme === 'theme-pink') pinkModeBtn.classList.add('active');
+      if (theme === 'theme-glass') glassModeBtn.classList.add('active');
+    }
+    
+    // بررسی تم سیستم
+    function checkSystemTheme() {
+      if (localStorage.getItem('amirzaTheme') === '') {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.body.className = 'theme-dark';
+        } else {
+          document.body.className = 'theme-light';
+        }
+      }
+    }
+    
+    // مدیریت نصب PWA
+    let deferredPrompt;
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'flex';
+    });
+    
+    installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+      }
+    });
+    
+    // رویدادها
+    searchBtn.addEventListener('click', searchLevel);
+    levelInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        searchLevel();
+      }
+    });
+    
+    levelInput.addEventListener('input', () => {
+      const query = levelInput.value.toLowerCase();
+      if (query.length > 0) {
+        const filtered = Object.keys(gameData)
+          .filter(key => key.includes(query))
+          .slice(0, 5);
+        
+        if (filtered.length > 0) {
+          suggestions.innerHTML = filtered.map(level => `
+            <div class="suggestion-item" data-level="${level}">
+              مرحله ${level} (${gameData[level].length} کلمه)
+            </div>
+          `).join('');
+          
+          suggestions.style.display = 'block';
+          
+          document.querySelectorAll('.suggestion-item').forEach(item => {
+            item.addEventListener('click', () => {
+              levelInput.value = item.dataset.level;
+              suggestions.style.display = 'none';
+              searchLevel();
+            });
+          });
+        } else {
+          suggestions.style.display = 'none';
+        }
+      } else {
+        suggestions.style.display = 'none';
+      }
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (e.target !== levelInput) {
+        suggestions.style.display = 'none';
+      }
+    });
+    
+    lightModeBtn.addEventListener('click', () => setTheme('theme-light'));
+    darkModeBtn.addEventListener('click', () => setTheme('theme-dark'));
+    systemModeBtn.addEventListener('click', () => {
+      setTheme('');
+      checkSystemTheme();
+    });
+    blueModeBtn.addEventListener('click', () => setTheme('theme-blue'));
+    pinkModeBtn.addEventListener('click', () => setTheme('theme-pink'));
+    glassModeBtn.addEventListener('click', () => setTheme('theme-glass'));
+    
+    prevWordBtn.addEventListener('click', () => {
+      if (currentWords.length > 0) {
+        currentWordIndex = (currentWordIndex - 1 + currentWords.length) % currentWords.length;
+        updateDeviceScreen();
+      }
+    });
+    
+    nextWordBtn.addEventListener('click', () => {
+      if (currentWords.length > 0) {
+        currentWordIndex = (currentWordIndex + 1) % currentWords.length;
+        updateDeviceScreen();
+      }
+    });
+    
+    speakWordBtn.addEventListener('click', () => {
+      if (currentWords.length > 0) {
+        speakWord(currentWords[currentWordIndex]);
+      }
+    });
+    
+    autoPlayBtn.addEventListener('click', autoPlayWords);
+    
+    closeDeviceBtn.addEventListener('click', () => {
+      amirzaDevice.style.display = 'none';
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
+        autoPlayBtn.innerHTML = '<i class="fas fa-play"></i> پخش خودکار';
+      }
+    });
+    
+    favoriteBtn.addEventListener('click', () => {
+      const index = favoriteLevels.indexOf(currentLevel);
+      if (index === -1) {
+        favoriteLevels.push(currentLevel);
+        showToast('به علاقه‌مندی‌ها اضافه شد');
+      } else {
+        favoriteLevels.splice(index, 1);
+        showToast('از علاقه‌مندی‌ها حذف شد');
+      }
+      updateFavoriteButton();
+      saveUserData();
+      updateStatsDisplay();
+    });
+    
+    speakBtn.addEventListener('click', () => {
+      if (currentWords.length > 0) {
+        currentWords.forEach((word, i) => {
+          setTimeout(() => {
+            speakWord(word);
+          }, i * 3000);
+        });
+        showToast('در حال پخش تمام کلمات...');
+      }
+    });
+    
+    shareBtn.addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({
+          title: `کلمات مرحله ${currentLevel} آمیرزا`,
+          text: `کلمات مرحله ${currentLevel} بازی آمیرزا: ${currentWords.join('، ')}`,
+          url: window.location.href
+        }).catch(() => {
+          showToast('خطا در اشتراک‌گذاری');
+        });
+      } else {
+        copyToClipboard(`کلمات مرحله ${currentLevel} بازی آمیرزا: ${currentWords.join('، ')}`);
+        showToast('متن کپی شد، می‌توانید به اشتراک بگذارید');
+      }
+    });
+    
+    mapBtn.addEventListener('click', showLevelsMap);
+    closeMapBtn.addEventListener('click', () => {
+      levelsMap.style.display = 'none';
+    });
+    
+    statsBtn.addEventListener('click', () => {
+      userStatsSection.style.display = 'block';
+      userStatsSection.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    closeStatsBtn.addEventListener('click', () => {
+      userStatsSection.style.display = 'none';
+    });
+    
+    // کنترل حجم صدا
+    volumeSlider.addEventListener('input', (e) => {
+      volume = parseFloat(e.target.value);
+      localStorage.setItem('amirzaVolume', volume.toString());
+    });
+    
+    // مقداردهی اولیه
+    window.addEventListener('DOMContentLoaded', () => {
+      loadGameData();
+      
+      // تنظیم ساعت
+      updateClock();
+      setInterval(updateClock, 1000);
+      
+      // تنظیم تم ذخیره شده
+      const savedTheme = localStorage.getItem('amirzaTheme') || '';
+      setTheme(savedTheme);
+      checkSystemTheme();
+      
+      // ردیابی تغییر تم سیستم
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkSystemTheme);
+      
+      // نمایش دستگاه مجازی اگر مرحله‌ای جستجو شده باشد
+      if (currentWords.length > 0) {
+        amirzaDevice.style.display = 'block';
+      }
+      
+      // بارگذاری صداها برای TTS
+      if ('speechSynthesis' in window) {
+        // برخی مرورگرها نیاز دارند صداها لود شوند
+        window.speechSynthesis.onvoiceschanged = () => {
+          console.log('Voices loaded');
+        };
+        
+        // اگر صداها هنوز لود نشده‌اند، این کار کمک می‌کند
+        if (window.speechSynthesis.getVoices().length === 0) {
+          window.speechSynthesis.addEventListener('voiceschanged', () => {
+            console.log('Voices loaded after event');
+          });
+        }
+      }
+    });
+
+    // ثبت Service Worker برای PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful');
+        }).catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+</body>
+<!-- 
+  +-+-+-+-+-+-+-+-+-+
+  |P|o|w|e|r|e|d| |B|y|
+  +-+-+-+-+-+-+-+-+-+
+  نویسنده: @Mani_coder
+  چنل: @Source_donii
+  کپی رایت © 1404
+  تمامی حقوق محفوظ است
+-->
+</html>
