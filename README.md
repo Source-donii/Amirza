@@ -22,7 +22,7 @@ FA: رابط کاربری مدرن با جستجوی هوشمند، تلفظ ص�
 
 🚀 Quick Start | شروع سریع  
 ```bash
-git clone https://github.com/yourrepo/amirza-pro.git
+git clone https://github.com/source-donii/amirza-pro.git
 cd amirza-pro
 ```
 
